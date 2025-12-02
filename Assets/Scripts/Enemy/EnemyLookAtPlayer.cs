@@ -13,4 +13,9 @@ public class EnemyLookAtPlayer : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
+
+    public void SetPlayer(Transform newPlayer)
+    {
+        player = newPlayer;
+    }
 }

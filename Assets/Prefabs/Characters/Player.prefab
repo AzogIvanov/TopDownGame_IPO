@@ -187,7 +187,6 @@ GameObject:
   - component: {fileID: 5653920241546144557}
   - component: {fileID: 3018110968913735974}
   - component: {fileID: 8812006492473435024}
-  - component: {fileID: 4384128576158290443}
   - component: {fileID: 1270270164753943163}
   m_Layer: 0
   m_Name: Player
@@ -272,31 +271,13 @@ MonoBehaviour:
   gunPointShotgun: {fileID: 4916512246742642561}
   bulletPrefab: {fileID: 2783179662159977536, guid: 30dadcf0e96cc5c4c82885c60a43db7a, type: 3}
   playerController: {fileID: 3018110968913735974}
+  cameraController: {fileID: 0}
   bulletSpeed: 10
   fireRate: 0.3
   shotgunPellets: 6
   shotgunSpread: 17
   shotgunBulletSpeed: 15
   shotgunBulletLife: 0.5
---- !u!114 &4384128576158290443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5708756746926999172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e33628a592c269447bab498b41f845dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMeleeAttack
-  attackPoint: {fileID: 0}
-  attackRange: 1
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  damage: 1
-  attackRate: 1
 --- !u!61 &1270270164753943163
 BoxCollider2D:
   m_ObjectHideFlags: 0

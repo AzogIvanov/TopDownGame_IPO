@@ -20,4 +20,9 @@ public class EnemyController : MonoBehaviour
     {
         agent.SetDestination(target.position);
     }
+
+    public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
+    }
 }
