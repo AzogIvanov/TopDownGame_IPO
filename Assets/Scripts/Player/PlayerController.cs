@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("References")]
     public Camera cam;
-    public Animator animator; // arrastra el hijo Visual aquí
+    public Animator animator;
 
     Rigidbody2D rb;
 

@@ -8,6 +8,11 @@ public class EnemyController : MonoBehaviour
 
     NavMeshAgent agent;
 
+    Vector2 movement;
+
+    [Header("References")]
+    public Animator animator;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -18,7 +23,18 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        agent.SetDestination(target.position);
+        if (agent != null && agent.isActiveAndEnabled && agent.isOnNavMesh)
+        {
+            agent.SetDestination(target.position);
+        }
+
+        // --- ANIMACIÓN ---
+        if (animator != null)
+        {
+            // detecta si el navmesh agent se está moviendo
+            bool isMoving = agent.velocity.sqrMagnitude > 0.1f;
+            animator.SetBool("isMoving", isMoving);
+        }
     }
 
     public void SetTarget(Transform newTarget)

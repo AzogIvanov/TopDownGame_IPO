@@ -20,6 +20,14 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject); // destruir bala al impactar
         }
 
+        // Comprobamos si es un enemigo
+        BunkerHealth bunker = collision.GetComponent<BunkerHealth>();
+        if (bunker != null)
+        {
+            bunker.TakeDamage(damage);
+            Destroy(gameObject); // destruir bala al impactar
+        }
+
         if (collision.gameObject.layer == LayerMask.NameToLayer("Obstacles"))
         {
             Destroy(gameObject);

@@ -32,9 +32,9 @@ public class ZombieSpawner : MonoBehaviour
 
         Vector2 spawnPos = GetRandomPosition();
 
-        // OPCIONAL: evitar colisiones con obstáculos
-        if (Physics2D.OverlapCircle(spawnPos, 0.5f, obstacleMask) != null)
-            return; // intenta más tarde
+        // evitar colisiones con obstáculos
+        // if (Physics2D.OverlapCircle(spawnPos, 0.5f, obstacleMask) != null)
+            //return; // intenta más tarde
 
         // Instanciar
         GameObject zombie = Instantiate(zombiePrefab, spawnPos, Quaternion.identity);
