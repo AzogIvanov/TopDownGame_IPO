@@ -11,7 +11,7 @@ namespace TopDown.CameraControl
 
         // SHAKE
         private float shakeDuration = 0f;
-        private float shakeMagnitude = 0.45f;
+        private float shakeMagnitude = 0f;
         private float shakeFadeSpeed = 3f;
         private Vector3 shakeOffset;
 
@@ -30,23 +30,31 @@ namespace TopDown.CameraControl
             transform.position = finalCameraPosition;
         }
 
+        private float shakeTime = 0f;
+
         private void HandleCameraShake()
         {
             if (shakeDuration > 0)
             {
-                shakeOffset = Random.insideUnitCircle * shakeMagnitude;
+                shakeTime += Time.deltaTime * 10f; // velocidad del ruido
+                float x = (Mathf.PerlinNoise(shakeTime, 0f) - 0.5f) * 2f * shakeMagnitude;
+                float y = (Mathf.PerlinNoise(0f, shakeTime) - 0.5f) * 2f * shakeMagnitude;
+                shakeOffset = new Vector3(x, y, 0f);
                 shakeDuration -= Time.deltaTime * shakeFadeSpeed;
             }
             else
             {
-                shakeDuration = 0;
                 shakeOffset = Vector3.zero;
+                shakeDuration = 0;
+                shakeTime = 0;
             }
         }
 
-        public void Shake(float duration)
+
+        public void Shake(float duration, float magnitude)
         {
             shakeDuration = duration;
+            shakeMagnitude = magnitude;
         }
     }
 }

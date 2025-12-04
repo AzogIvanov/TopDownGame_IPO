@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ZombieSpawner
   zombiePrefab: {fileID: 9048990228796204584, guid: 05787df7ee5cf5b438cf0942bf1332a2, type: 3}
   player: {fileID: 0}
-  maxZombies: 10
+  maxZombies: 25
   spawnInterval: 2
   areaSize: {x: 10, y: 23}
   obstacleMask:

@@ -175,6 +175,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8492563836416351923}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5287293969398941004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1874946422711515046}
+  m_Layer: 0
+  m_Name: AssaultRiflePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1874946422711515046
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5287293969398941004}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.04, y: 0.785, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8492563836416351923}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5708756746926999172
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,6 +241,7 @@ Transform:
   m_Children:
   - {fileID: 6129411182039334517}
   - {fileID: 6595357240639231524}
+  - {fileID: 1874946422711515046}
   - {fileID: 4916512246742642561}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -255,6 +287,7 @@ MonoBehaviour:
   moveSpeed: 5
   cam: {fileID: 0}
   animator: {fileID: 0}
+  currentWeapon: 0
 --- !u!114 &8812006492473435024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,15 +302,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerShooting
   gunPointNormal: {fileID: 6129411182039334517}
   gunPointShotgun: {fileID: 4916512246742642561}
+  gunPointARifle: {fileID: 1874946422711515046}
   bulletPrefab: {fileID: 2783179662159977536, guid: 30dadcf0e96cc5c4c82885c60a43db7a, type: 3}
   playerController: {fileID: 3018110968913735974}
   cameraController: {fileID: 0}
-  bulletSpeed: 10
-  fireRate: 0.3
+  bulletSpeed: 27
+  normalFireRate: 0.5
+  shotgunFireRate: 1
+  rifleFireRate: 0.1
   shotgunPellets: 6
-  shotgunSpread: 17
-  shotgunBulletSpeed: 15
-  shotgunBulletLife: 0.5
+  shotgunSpread: 12
+  shotgunBulletSpeed: 27
+  shotgunBulletLife: 0.7
+  aRiflePellets: 1
+  aRifleSpread: 6
+  aRifleBulletSpeed: 27
+  aRifleBulletLife: 0.7
 --- !u!61 &1270270164753943163
 BoxCollider2D:
   m_ObjectHideFlags: 0

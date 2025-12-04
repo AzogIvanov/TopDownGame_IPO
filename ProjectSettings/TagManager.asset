@@ -21,7 +21,7 @@ TagManager:
   - 
   - 
   - Bunker
-  - 
+  - Particles
   - 
   - 
   - 
@@ -53,6 +53,9 @@ TagManager:
     locked: 0
   - name: Obstacles
     uniqueID: 3692483549
+    locked: 0
+  - name: Particles
+    uniqueID: 3522544891
     locked: 0
   m_RenderingLayers:
   - Default

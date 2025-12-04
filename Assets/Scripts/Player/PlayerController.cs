@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public enum WeaponType
+    {
+        None = 0,
+        Shotgun = 1,
+        Rifle= 2
+    }
+
     [Header("Movement Settings")]
     public float moveSpeed = 5f;
     Vector2 movement;
@@ -12,8 +19,7 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D rb;
 
-    // Control de arma
-    private bool hasShotgun = false;
+    public WeaponType currentWeapon = WeaponType.None;
 
     void Start()
     {
@@ -27,15 +33,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // --- Cambiar arma ---
-        if (Input.GetKeyDown(KeyCode.Tab)) // ahora con Tab
-        {
-            hasShotgun = !hasShotgun; // alterna el modo escopeta
-            if (animator != null)
-                animator.SetBool("hasShotgun", hasShotgun);
-
-            Debug.Log("Cambió modo escopeta: " + hasShotgun); // debug para consola
-        }
+        // CAMBIO DE ARMA
+        if (Input.GetKeyDown(KeyCode.Alpha1)) ChangeWeapon(WeaponType.None);
+        if (Input.GetKeyDown(KeyCode.Alpha2)) ChangeWeapon(WeaponType.Shotgun);
+        if (Input.GetKeyDown(KeyCode.Alpha3)) ChangeWeapon(WeaponType.Rifle);
 
         // --- MOVIMIENTO WASD ---
         movement.x = Input.GetAxisRaw("Horizontal");  // A-D
@@ -48,11 +49,12 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         rb.rotation = angle - 90f; // Ajuste según sprite
 
-        // --- ANIMACIÓN ---
+     // --- ANIMACIÓN ---
         if (animator != null)
         {
-            bool isMoving = movement != Vector2.zero;
-            animator.SetBool("isMoving", isMoving);
+            float speedPercent = movement.magnitude; // 0 quieto, 1 moviendo
+            animator.SetFloat("speed", speedPercent);
+            animator.SetFloat("weaponIndex", (float)currentWeapon);
         }
     }
 
@@ -62,5 +64,10 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(rb.position + moveDir * moveSpeed * Time.fixedDeltaTime);
     }
 
-    public bool HasShotgun { get { return hasShotgun; } }
+    private void ChangeWeapon(WeaponType newWeapon)
+    {
+        currentWeapon = newWeapon;
+        animator.SetFloat("weaponIndex", (float)newWeapon);
+        Debug.Log("Arma actual: " + newWeapon);
+    }
 }

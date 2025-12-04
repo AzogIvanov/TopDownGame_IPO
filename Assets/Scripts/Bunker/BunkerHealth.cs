@@ -9,6 +9,7 @@ public class BunkerHealth : MonoBehaviour
     public GameObject intactSprite;     // hijo con sprite original
     public GameObject destroyedSprite;  // hijo con sprite destruido
     public GameObject spawner;          // hijo con spawner de zombies
+    public ParticleSystem explosionFX;
 
     private Rigidbody2D rb;
     private Collider2D col;
@@ -52,5 +53,9 @@ public class BunkerHealth : MonoBehaviour
 
         if (col != null)
             col.enabled = false;
+
+        // DESTROY FX
+        if (explosionFX != null)
+            explosionFX.Play();
     }
 }
