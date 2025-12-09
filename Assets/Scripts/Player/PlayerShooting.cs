@@ -60,6 +60,9 @@ public class PlayerShooting : MonoBehaviour
                 break;
     }
 
+        if (playerController.currentWeapon == WeaponType.None)
+            return;
+
         // Disparo
         if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
         {
@@ -85,7 +88,7 @@ public class PlayerShooting : MonoBehaviour
                 break;
 
             default: // None
-                ShootNormal();
+                // ShootNormal();
                 break;
         }
 
@@ -136,12 +139,14 @@ public class PlayerShooting : MonoBehaviour
             b.lifeTime = aRifleBulletLife;
     }
 
-    void ShootNormal()
+    /*
+     * void ShootNormal()
     {
         GameObject bullet = Instantiate(bulletPrefab, currentGunPoint.position, currentGunPoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.linearVelocity = currentGunPoint.up * bulletSpeed;
     }
-
+     * 
+     */
 
 }

@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 1270270164753943163}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -287,6 +287,8 @@ MonoBehaviour:
   moveSpeed: 5
   cam: {fileID: 0}
   animator: {fileID: 0}
+  shotgunAvailable: 1
+  rifleAvailable: 1
   currentWeapon: 0
 --- !u!114 &8812006492473435024
 MonoBehaviour:

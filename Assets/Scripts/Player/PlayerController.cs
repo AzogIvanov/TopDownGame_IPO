@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D rb;
 
+    public bool shotgunAvailable = true;
+    public bool rifleAvailable = true;
+
     public WeaponType currentWeapon = WeaponType.None;
 
     void Start()
@@ -35,8 +38,8 @@ public class PlayerController : MonoBehaviour
     {
         // CAMBIO DE ARMA
         if (Input.GetKeyDown(KeyCode.Alpha1)) ChangeWeapon(WeaponType.None);
-        if (Input.GetKeyDown(KeyCode.Alpha2)) ChangeWeapon(WeaponType.Shotgun);
-        if (Input.GetKeyDown(KeyCode.Alpha3)) ChangeWeapon(WeaponType.Rifle);
+        if (Input.GetKeyDown(KeyCode.Alpha2) && shotgunAvailable) ChangeWeapon(WeaponType.Shotgun);
+        if (Input.GetKeyDown(KeyCode.Alpha3) && rifleAvailable) ChangeWeapon(WeaponType.Rifle);
 
         // --- MOVIMIENTO WASD ---
         movement.x = Input.GetAxisRaw("Horizontal");  // A-D
@@ -66,6 +69,10 @@ public class PlayerController : MonoBehaviour
 
     private void ChangeWeapon(WeaponType newWeapon)
     {
+        // Si intenta cambiar a arma que NO tiene => ignoramos
+        if (newWeapon == WeaponType.Shotgun && !shotgunAvailable) return;
+        if (newWeapon == WeaponType.Rifle && !rifleAvailable) return;
+
         currentWeapon = newWeapon;
         animator.SetFloat("weaponIndex", (float)newWeapon);
         Debug.Log("Arma actual: " + newWeapon);

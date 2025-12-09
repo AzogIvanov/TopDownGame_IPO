@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class BunkerHealth : MonoBehaviour
 {
@@ -14,10 +15,21 @@ public class BunkerHealth : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D col;
 
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
+
+        if (intactSprite != null)
+        {
+            intactSprite.SetActive(true);
+            spriteRenderer = intactSprite.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+                originalColor = spriteRenderer.color;
+        }
 
         // Asegurarnos de que el sprite destruido empieza oculto
         if (destroyedSprite != null)
@@ -28,10 +40,20 @@ public class BunkerHealth : MonoBehaviour
     {
         health -= dmg;
 
+        if (spriteRenderer != null)
+            StartCoroutine(FlashRed());
+
         if (health <= 0)
         {
             DestroyBunker();
         }
+    }
+
+    private IEnumerator FlashRed()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.1f); // dura 0.1 segundos, muy rápido
+        spriteRenderer.color = originalColor;
     }
 
     void DestroyBunker()

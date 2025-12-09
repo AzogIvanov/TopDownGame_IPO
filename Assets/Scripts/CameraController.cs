@@ -17,6 +17,8 @@ namespace TopDown.CameraControl
 
         private void Update()
         {
+            if (PauseMenu.GameIsPaused) return;
+
             HandleCameraShake();
 
             // Calculate mouse position in world coordintes then calculates displacement depending on difference between mouse and player position
