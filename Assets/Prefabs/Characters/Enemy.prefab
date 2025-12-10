@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1637928493378247945}
   - component: {fileID: 8589820788718148097}
   - component: {fileID: 3807858002154822952}
+  - component: {fileID: 5277526529688577735}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Zombie
@@ -126,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9f3984ad05bcc943ac0ab15b4d48842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  isDead: 0
   health: 5
   bloodFX: {fileID: 690216697576488894}
   deadBloodExplosionFX: {fileID: 5061124197164306777}
@@ -183,6 +185,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5277526529688577735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131759904662331281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d90e6146c045124fb6f45698e9bb936, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
+  damage: 1
+  attackCooldown: 1.2
 --- !u!1 &6261546007713914662
 GameObject:
   m_ObjectHideFlags: 0

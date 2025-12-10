@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 6336757118285878170}
   - component: {fileID: 7889455368361099544}
   - component: {fileID: 3183017236636944403}
-  - component: {fileID: 9045555853993358647}
   - component: {fileID: 9156491484970863583}
-  - component: {fileID: 3534436955640778676}
   - component: {fileID: 4118226166945089833}
+  - component: {fileID: 3855640886191392694}
+  - component: {fileID: 3685906995155116282}
+  - component: {fileID: 1306653441723418328}
   m_Layer: 0
   m_Name: Explosive Enemy
   m_TagString: Zombie
@@ -32,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -34.140102, y: -6.705715, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4331, y: 1.4331, z: 1.4331}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9168101466625859386}
@@ -114,24 +115,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &9045555853993358647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4626708774353087680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9f3984ad05bcc943ac0ab15b4d48842, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  health: 5
-  bloodFX: {fileID: 1000724776350820408}
-  deadBloodExplosionFX: {fileID: 1767216935825777840}
-  aliveSprite: {fileID: 9123468241154634894}
-  deadSprite: {fileID: 7242962979315446950}
-  destroyDelay: 5
 --- !u!114 &9156491484970863583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,22 +128,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyLookAtPlayer
   player: {fileID: 8492563836416351923, guid: a6e1d68731bded147a1399e505caff4a, type: 3}
---- !u!114 &3534436955640778676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4626708774353087680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12efcf06ab1b204459562ae7ae1655a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  target: {fileID: 8492563836416351923, guid: a6e1d68731bded147a1399e505caff4a, type: 3}
-  minSpeed: 4
-  maxSpeed: 7
-  animator: {fileID: 7531692830927675804}
 --- !u!195 &4118226166945089833
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -183,6 +150,57 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3855640886191392694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4626708774353087680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 952d84c3fa24fa84eb50edb30f4d9639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplosiveEnemyController
+  target: {fileID: 0}
+  minSpeed: 3
+  maxSpeed: 4
+  animator: {fileID: 7531692830927675804}
+--- !u!114 &3685906995155116282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4626708774353087680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7e6204374f6884a94e31fe235146a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplosiveEnemyHealth
+  isDead: 0
+  health: 8
+  bloodFX: {fileID: 1000724776350820408}
+  toxicBloodFX: {fileID: 0}
+  deadBloodExplosionFX: {fileID: 1767216935825777840}
+  deadToxicBloodExplosionFX: {fileID: 0}
+  aliveSprite: {fileID: 9123468241154634894}
+  deadSprite: {fileID: 7242962979315446950}
+  destroyDelay: 7
+--- !u!114 &1306653441723418328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4626708774353087680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd324cab99f73964593a088c5ea01120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplosiveEnemyAttack
+  damage: 2
+  attackCooldown: 3.5
 --- !u!1 &7242962979315446950
 GameObject:
   m_ObjectHideFlags: 0

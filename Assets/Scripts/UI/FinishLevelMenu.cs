@@ -43,6 +43,7 @@ public class FinishLevelMenu : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
         Resume();
+        PlayerHealth.isDead = false;
     }
 
     public void ContinueLevel()
@@ -61,6 +62,7 @@ public class FinishLevelMenu : MonoBehaviour
     public void LoadMenu()
     {
         Resume();
+        PlayerHealth.isDead = false;
         SceneManager.LoadScene("MainMenu");
 
     }

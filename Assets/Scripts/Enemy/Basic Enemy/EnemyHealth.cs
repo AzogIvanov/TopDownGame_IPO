@@ -6,6 +6,11 @@ public class EnemyHealth : MonoBehaviour
     [HideInInspector]
     public bool isDead = false;
 
+    [Header("Explosion")]
+    public float explosionRadius = 2f;
+    public int explosionDamage = 3;
+    public LayerMask damageLayer; // Layer del player/zombies
+
     [Header("Health")]
     public int health = 1;
 

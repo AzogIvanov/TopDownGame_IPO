@@ -7,8 +7,8 @@ public class EnemyController : MonoBehaviour
     NavMeshAgent agent;
 
     [Header("Enemy Speed Settings")]
-    public float minSpeed = 3f;  // velocidad mínima
-    public float maxSpeed = 7f;  // velocidad máxima
+    public float minSpeed = 3f;
+    public float maxSpeed = 7f;
 
     [Header("References")]
     public Animator animator;

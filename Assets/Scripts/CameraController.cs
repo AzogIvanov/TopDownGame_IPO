@@ -19,6 +19,7 @@ namespace TopDown.CameraControl
         {
             if (PauseMenu.GameIsPaused) return;
             if (FinishLevelMenu.GameIsPaused) return;
+            if (PlayerHealth.isDead) return;
             if (playerTransform == null) return;
 
             HandleCameraShake();

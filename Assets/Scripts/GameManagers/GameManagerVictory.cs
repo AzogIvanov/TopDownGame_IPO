@@ -14,9 +14,11 @@ public class GameManagerVictory : MonoBehaviour
 
         BunkerHealth[] bunkers = GameObject.FindObjectsByType<BunkerHealth>(FindObjectsSortMode.None);
         EnemyHealth[] enemies = GameObject.FindObjectsByType<EnemyHealth>(FindObjectsSortMode.None);
+        ExplosiveEnemyHealth[] explosiveEnemies = GameObject.FindObjectsByType<ExplosiveEnemyHealth>(FindObjectsSortMode.None);
 
         bool allDestroyed = true;
-        bool allDead = true;
+        bool allEnemiesDead = true;
+        bool allExplosiveEnemiesDead = true;
 
         foreach (var bunker in bunkers)
         {
@@ -31,12 +33,21 @@ public class GameManagerVictory : MonoBehaviour
         {
             if (!enemie.isDead)
             {
-                allDead = false;
+                allEnemiesDead = false;
                 break;
             }
         }
 
-        if (allDead && allDestroyed)
+        foreach (var explosiveEnemie in explosiveEnemies)
+        {
+            if (!explosiveEnemie.isDead)
+            {
+                allExplosiveEnemiesDead = false;
+                break;
+            }
+        }
+
+        if (allEnemiesDead && allDestroyed && allExplosiveEnemiesDead)
         {
             victoryTriggered = true;
             StartCoroutine(TriggerVictoryWithDelay(2f));
