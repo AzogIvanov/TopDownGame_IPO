@@ -13,7 +13,7 @@ NavMeshProjectSettings:
     cost: 2
   - name: Walkable 2
     cost: 1
-  - name: 
+  - name: Walkable3
     cost: 1
   - name: 
     cost: 1

@@ -60,6 +60,9 @@ TagManager:
   - name: Particles
     uniqueID: 3522544891
     locked: 0
+  - name: Floating Text
+    uniqueID: 677015477
+    locked: 0
   - name: UI
     uniqueID: 2875304591
     locked: 0

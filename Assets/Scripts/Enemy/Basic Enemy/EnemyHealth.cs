@@ -3,6 +3,9 @@ using UnityEngine.AI;
 
 public class EnemyHealth : MonoBehaviour
 {
+    [HideInInspector]
+    public bool isDead = false;
+
     [Header("Health")]
     public int health = 1;
 
@@ -19,8 +22,6 @@ public class EnemyHealth : MonoBehaviour
 
     [Header("Settings")]
     public float destroyDelay = 5f;
-
-    bool isDead = false;
 
     private void Start()
     {

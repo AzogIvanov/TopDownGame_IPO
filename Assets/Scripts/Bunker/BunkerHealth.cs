@@ -3,6 +3,9 @@ using System.Collections;
 
 public class BunkerHealth : MonoBehaviour
 {
+    [HideInInspector]
+    public bool isDestroyed = false;
+
     [Header("Health Settings")]
     public int health = 1;
 
@@ -79,5 +82,7 @@ public class BunkerHealth : MonoBehaviour
         // DESTROY FX
         if (explosionFX != null)
             explosionFX.Play();
+
+        isDestroyed = true;
     }
 }
