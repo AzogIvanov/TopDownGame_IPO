@@ -5,20 +5,20 @@ public class MainMenuUI : MonoBehaviour
 {
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha7))
             SceneManager.LoadScene("LevelOne");
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha8))
             SceneManager.LoadScene("LevelTwo");
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-            SceneManager.LoadScene("NivelThree");
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+            SceneManager.LoadScene("LevelThree");
     }
 
     public void PlayGame()
     {
         // Cargar primer nivel
-        SceneManager.LoadScene("LevelTwo");
+        SceneManager.LoadScene("LevelOne");
     }
 
     public void OpenOptions()

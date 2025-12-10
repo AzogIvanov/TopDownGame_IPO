@@ -15,6 +15,15 @@ public class PauseMenu : MonoBehaviour
             else
                 Pause();
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+            SceneManager.LoadScene("LevelOne");
+
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+            SceneManager.LoadScene("LevelTwo");
+
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+            SceneManager.LoadScene("LevelThree");
     }
 
     public void Resume()
@@ -29,6 +38,14 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f; // esto congela el juego
         GameIsPaused = true;
+    }
+
+    public void RestartLevel()
+    {
+        Time.timeScale = 1f; // asegurarse de volver el tiempo a la normalidad
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
+        Resume();
     }
 
     public void LoadMenu()
