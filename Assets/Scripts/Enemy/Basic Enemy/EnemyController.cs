@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -25,6 +26,7 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+
         if (agent != null && agent.isActiveAndEnabled && agent.isOnNavMesh)
         {
             agent.SetDestination(target.position);

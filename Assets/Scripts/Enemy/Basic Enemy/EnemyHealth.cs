@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -87,4 +88,5 @@ public class EnemyHealth : MonoBehaviour
         Destroy(gameObject, destroyDelay);
 
     }
+    
 }

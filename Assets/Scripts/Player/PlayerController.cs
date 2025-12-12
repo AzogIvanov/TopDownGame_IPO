@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+
         Vector2 moveDir = movement.normalized;
         rb.MovePosition(rb.position + moveDir * moveSpeed * Time.fixedDeltaTime);
     }

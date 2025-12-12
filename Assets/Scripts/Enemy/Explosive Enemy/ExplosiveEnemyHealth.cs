@@ -9,6 +9,10 @@ public class ExplosiveEnemyHealth : MonoBehaviour
     [Header("Health")]
     public int health = 8;
 
+    [Header("Explosion Settings")]
+    public float explosionRadius = 2.5f;
+    public int explosionDamage = 2;
+
     [Header("References")]
     public ParticleSystem bloodFX;
     public ParticleSystem toxicBloodFX;
@@ -46,6 +50,10 @@ public class ExplosiveEnemyHealth : MonoBehaviour
         if (bloodFX != null)
             bloodFX.Play();
 
+        if (toxicBloodFX != null)
+            toxicBloodFX.Play();
+
+
         if (health <= 0)
         {
             Die();
@@ -79,9 +87,47 @@ public class ExplosiveEnemyHealth : MonoBehaviour
         // DEATH FX
         if (deadBloodExplosionFX != null)
             deadBloodExplosionFX.Play();
+        if (deadToxicBloodExplosionFX != null)
+            deadToxicBloodExplosionFX.Play();
 
         // --- Destroy body later ---
         Destroy(gameObject, destroyDelay);
 
+        // --- EXPLSOIN ---
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+
+        foreach (var hit in hits)
+        {
+            if (hit.CompareTag("Player"))
+            {
+                PlayerHealth ph = hit.GetComponent<PlayerHealth>();
+                if (ph != null)
+                    ph.TakeDamage(explosionDamage);
+            }
+
+            if (hit.CompareTag("Explosive Enemy"))
+            {
+                ExplosiveEnemyHealth eeh = hit.GetComponent<ExplosiveEnemyHealth>();
+                if (eeh != null)
+                    eeh.TakeDamage(explosionDamage);
+            }
+
+            if (hit.CompareTag("Zombie"))
+            {
+                EnemyHealth eh = hit.GetComponent<EnemyHealth>();
+                if (eh != null)
+                    eh.TakeDamage(explosionDamage);
+            }
+        }
+        // --------
+
+        Destroy(gameObject, destroyDelay);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }
+

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Zombie
+  - Explosive Enemy
   layers:
   - Default
   - TransparentFX
@@ -56,6 +57,9 @@ TagManager:
     locked: 0
   - name: Obstacles
     uniqueID: 3692483549
+    locked: 0
+  - name: Obstacles 2
+    uniqueID: 39687645
     locked: 0
   - name: Particles
     uniqueID: 3522544891
