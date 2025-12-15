@@ -5,12 +5,12 @@ using static PlayerController;
 public class PlayerShooting : MonoBehaviour
 {
     [Header("References")]
-    public Transform gunPointNormal;            // Punto para armas normales
-    public Transform gunPointShotgun;           // Punto para escopeta
-    public Transform gunPointARifle;            // Punto para rifle de asalto
-    private Transform currentGunPoint;          // Punto activo de disparo
+    public Transform gunPointNormal;
+    public Transform gunPointShotgun;
+    public Transform gunPointARifle;
+    private Transform currentGunPoint;
 
-    public GameObject bulletPrefab;             // Prefab de la bala
+    public GameObject bulletPrefab;
     public PlayerController playerController;
     public CameraController cameraController;
 
@@ -34,6 +34,21 @@ public class PlayerShooting : MonoBehaviour
     public float aRifleBulletSpeed = 20f;
     public float aRifleBulletLife = 0.5f;
 
+    [Header("Grenade Launcher")]
+    public GameObject grenadePrefab;
+    public float grenadeFireRate = 1.2f;
+    public float grenadeLaunchForce = 12f;
+
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip shotgunShotReloadClip;
+    public float volumeShotgun = 0.3f;
+    public AudioClip machinegunShotClip;
+    public float volumeMachinegun = 0.3f;
+    public AudioClip grenadeLauncherShotClip;
+    public float volumeGrenadeLauncher = 0.3f;
+
+
     private float nextFireTime = 0f;
 
     void Start()
@@ -54,6 +69,9 @@ public class PlayerShooting : MonoBehaviour
                 break;
             case WeaponType.Rifle:
             currentGunPoint = gunPointARifle;
+                break;
+            case WeaponType.GrenadeLauncher:
+                currentGunPoint = gunPointShotgun;
                 break;
             default:
             currentGunPoint = gunPointNormal;
@@ -87,8 +105,12 @@ public class PlayerShooting : MonoBehaviour
                 ShootRifle();
                 break;
 
+            case WeaponType.GrenadeLauncher:
+                cameraController.Shake(0.40f, 0.09f);
+                ShootGrenade();
+                break;
+
             default: // None
-                // ShootNormal();
                 break;
         }
 
@@ -100,6 +122,7 @@ public class PlayerShooting : MonoBehaviour
         {
             case WeaponType.Shotgun: return shotgunFireRate;
             case WeaponType.Rifle: return rifleFireRate;
+            case WeaponType.GrenadeLauncher: return grenadeFireRate;
             default: return normalFireRate;
         }
     }
@@ -107,6 +130,12 @@ public class PlayerShooting : MonoBehaviour
 
     void ShootShotgun()
     {
+        if (audioSource != null && shotgunShotReloadClip != null)
+        {
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.PlayOneShot(shotgunShotReloadClip, volumeShotgun);
+        }
+
         for (int i = 0; i < shotgunPellets; i++)
         {
             float angleOffset = Random.Range(-shotgunSpread, shotgunSpread);
@@ -126,6 +155,12 @@ public class PlayerShooting : MonoBehaviour
 
     void ShootRifle()
     {
+        if (audioSource != null && machinegunShotClip != null)
+        {
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.PlayOneShot(machinegunShotClip, volumeMachinegun);
+        }
+
         float angleOffset = Random.Range(-aRifleSpread, aRifleSpread);
         Quaternion rotation = currentGunPoint.rotation * Quaternion.Euler(0, 0, angleOffset);
 
@@ -139,14 +174,23 @@ public class PlayerShooting : MonoBehaviour
             b.lifeTime = aRifleBulletLife;
     }
 
-    /*
-     * void ShootNormal()
+    void ShootGrenade()
     {
-        GameObject bullet = Instantiate(bulletPrefab, currentGunPoint.position, currentGunPoint.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.linearVelocity = currentGunPoint.up * bulletSpeed;
+        if (audioSource != null && grenadeLauncherShotClip != null)
+        {
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.PlayOneShot(grenadeLauncherShotClip, volumeGrenadeLauncher);
+        }
+
+        GameObject grenade = Instantiate(grenadePrefab, currentGunPoint.position, currentGunPoint.rotation);
+        Rigidbody2D rb = grenade.GetComponent<Rigidbody2D>();
+
+        if (rb != null)
+        {
+            Vector2 dir = currentGunPoint.up.normalized;
+
+            rb.AddForce(dir * grenadeLaunchForce, ForceMode2D.Impulse);
+        }
     }
-     * 
-     */
 
 }

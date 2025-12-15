@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour
     {
         None = 0,
         Shotgun = 1,
-        Rifle= 2
+        Rifle = 2,
+        GrenadeLauncher = 3
     }
 
     [Header("Movement Settings")]
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
     public bool shotgunAvailable = true;
     public bool rifleAvailable = true;
+    public bool grenadeLauncherAvailable = true;
 
     public WeaponType currentWeapon = WeaponType.None;
 
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1)) ChangeWeapon(WeaponType.None);
         if (Input.GetKeyDown(KeyCode.Alpha2) && shotgunAvailable) ChangeWeapon(WeaponType.Shotgun);
         if (Input.GetKeyDown(KeyCode.Alpha3) && rifleAvailable) ChangeWeapon(WeaponType.Rifle);
+        if (Input.GetKeyDown(KeyCode.Alpha4) && grenadeLauncherAvailable) ChangeWeapon(WeaponType.GrenadeLauncher);
 
         // --- MOVIMIENTO WASD ---
         movement.x = Input.GetAxisRaw("Horizontal");  // A-D
@@ -63,7 +66,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-
         Vector2 moveDir = movement.normalized;
         rb.MovePosition(rb.position + moveDir * moveSpeed * Time.fixedDeltaTime);
     }
@@ -73,6 +75,7 @@ public class PlayerController : MonoBehaviour
         // Si intenta cambiar a arma que NO tiene => ignoramos
         if (newWeapon == WeaponType.Shotgun && !shotgunAvailable) return;
         if (newWeapon == WeaponType.Rifle && !rifleAvailable) return;
+        if (newWeapon == WeaponType.GrenadeLauncher && !grenadeLauncherAvailable) return;
 
         currentWeapon = newWeapon;
         animator.SetFloat("weaponIndex", (float)newWeapon);

@@ -15,10 +15,14 @@ public class GameManagerVictory : MonoBehaviour
         BunkerHealth[] bunkers = GameObject.FindObjectsByType<BunkerHealth>(FindObjectsSortMode.None);
         EnemyHealth[] enemies = GameObject.FindObjectsByType<EnemyHealth>(FindObjectsSortMode.None);
         ExplosiveEnemyHealth[] explosiveEnemies = GameObject.FindObjectsByType<ExplosiveEnemyHealth>(FindObjectsSortMode.None);
+        BossEnemyHealth[] bossEnemies = GameObject.FindObjectsByType<BossEnemyHealth>(FindObjectsSortMode.None);
+        GooTank[] gooTanks = GameObject.FindObjectsByType<GooTank>(FindObjectsSortMode.None);
 
         bool allDestroyed = true;
         bool allEnemiesDead = true;
         bool allExplosiveEnemiesDead = true;
+        bool allBossEnemiesDead = true;
+        bool allGooTankDead = true;
 
         foreach (var bunker in bunkers)
         {
@@ -47,7 +51,25 @@ public class GameManagerVictory : MonoBehaviour
             }
         }
 
-        if (allEnemiesDead && allDestroyed && allExplosiveEnemiesDead)
+        foreach (var bossEnemie in bossEnemies)
+        {
+            if (!bossEnemie.isDead)
+            {
+                allBossEnemiesDead = false;
+                break;
+            }
+        }
+
+        foreach (var gooTank in gooTanks)
+        {
+            if (!gooTank.isDestroyed)
+            {
+                allGooTankDead = false;
+                break;
+            }
+        }
+
+        if (allEnemiesDead && allDestroyed && allExplosiveEnemiesDead && allBossEnemiesDead && allGooTankDead)
         {
             victoryTriggered = true;
             StartCoroutine(TriggerVictoryWithDelay(2f));

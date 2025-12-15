@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Zombie
   - Explosive Enemy
+  - Bunker
+  - GooTank
+  - Boss
   layers:
   - Default
   - TransparentFX

@@ -10,7 +10,7 @@ public class EnemyHealth : MonoBehaviour
     [Header("Explosion")]
     public float explosionRadius = 2f;
     public int explosionDamage = 3;
-    public LayerMask damageLayer; // Layer del player/zombies
+    public LayerMask damageLayer;
 
     [Header("Health")]
     public int health = 1;
@@ -20,8 +20,16 @@ public class EnemyHealth : MonoBehaviour
     public ParticleSystem deadBloodExplosionFX;
 
     [Header("Sprites")]
-    public GameObject aliveSprite;     // hijo con sprite original
-    public GameObject deadSprite;  // hijo con sprite destruido
+    public GameObject aliveSprite;
+    public GameObject deadSprite;
+
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip hitZombieClip;
+    public float volumeHitZombie = 0.3f;
+    public AudioClip deathZombieClip;
+    public float volumeDeathZombie = 0.3f;
+
 
     private Rigidbody2D rb;
     private Collider2D col;
@@ -46,9 +54,14 @@ public class EnemyHealth : MonoBehaviour
 
         health -= dmg;
 
-        // --- HIT FX ---
         if (bloodFX != null)
             bloodFX.Play();
+
+        if (audioSource != null && hitZombieClip != null)
+        {
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.PlayOneShot(hitZombieClip, volumeHitZombie);
+        }
 
         if (health <= 0)
         {
@@ -83,6 +96,12 @@ public class EnemyHealth : MonoBehaviour
         // DEATH FX
         if (deadBloodExplosionFX != null)
             deadBloodExplosionFX.Play();
+
+        if (audioSource != null && deathZombieClip != null)
+        {
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.PlayOneShot(deathZombieClip, volumeDeathZombie);
+        }
 
         // --- Destroy body later ---
         Destroy(gameObject, destroyDelay);

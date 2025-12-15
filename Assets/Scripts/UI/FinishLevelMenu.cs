@@ -31,8 +31,9 @@ public class FinishLevelMenu : MonoBehaviour
     public void Lose()
     {
         loseMenuUI.SetActive(true);
+
         Time.timeScale = 0f;
-        pauseMenu.SetActive(true);
+        pauseMenu.SetActive(false);
         GameIsPaused = true;
     }
 
