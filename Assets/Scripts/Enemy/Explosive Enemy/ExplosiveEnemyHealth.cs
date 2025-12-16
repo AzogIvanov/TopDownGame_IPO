@@ -23,6 +23,15 @@ public class ExplosiveEnemyHealth : MonoBehaviour
     public GameObject aliveSprite;
     public GameObject deadSprite;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip hitZombieClip;
+    public float volumeHitZombie = 0.3f;
+    public AudioClip deathZombieClip;
+    public float volumeDeathZombie = 0.3f;
+    public AudioClip deathPuffZombieClip;
+    public float volumeDeathPuffZombie = 0.3f;
+
     private Rigidbody2D rb;
     private Collider2D col;
 
@@ -52,6 +61,12 @@ public class ExplosiveEnemyHealth : MonoBehaviour
 
         if (toxicBloodFX != null)
             toxicBloodFX.Play();
+
+        if (audioSource != null && hitZombieClip != null)
+        {
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.PlayOneShot(hitZombieClip, volumeHitZombie);
+        }
 
 
         if (health <= 0)
@@ -89,6 +104,18 @@ public class ExplosiveEnemyHealth : MonoBehaviour
             deadBloodExplosionFX.Play();
         if (deadToxicBloodExplosionFX != null)
             deadToxicBloodExplosionFX.Play();
+
+        if (audioSource != null && deathZombieClip != null)
+        {
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.PlayOneShot(deathZombieClip, volumeDeathZombie);
+        }
+
+        if (audioSource != null && deathPuffZombieClip != null)
+        {
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.PlayOneShot(deathPuffZombieClip, volumeDeathPuffZombie);
+        }
 
         // --- Destroy body later ---
         Destroy(gameObject, destroyDelay);

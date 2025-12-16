@@ -3,7 +3,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float lifeTime = 2f;
-    public int damage = 1; // cantidad de daño que hace
+    public int damage = 1;
 
     void Start()
     {
@@ -37,6 +37,7 @@ public class Bullet : MonoBehaviour
         BunkerHealth bunker = collision.GetComponent<BunkerHealth>();
         if (bunker != null)
         {
+
             bunker.TakeDamage(damage);
             Destroy(gameObject);
         }

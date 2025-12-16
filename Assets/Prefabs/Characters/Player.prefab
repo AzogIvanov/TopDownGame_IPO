@@ -332,9 +332,9 @@ MonoBehaviour:
   shotgunShotReloadClip: {fileID: 8300000, guid: 6b3c84d552142d64a9afda4ae2b5523f, type: 3}
   volumeShotgun: 0.3
   machinegunShotClip: {fileID: 8300000, guid: 3a832471b59b3b34783fb16b3768be08, type: 3}
-  volumeMachinegun: 0.3
+  volumeMachinegun: 0.12
   grenadeLauncherShotClip: {fileID: 8300000, guid: 45c2ca74f9393be4586c36075c995790, type: 3}
-  volumeGrenadeLauncher: 0.3
+  volumeGrenadeLauncher: 0.16
 --- !u!61 &1270270164753943163
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -396,6 +396,11 @@ MonoBehaviour:
   aliveSprite: {fileID: 94618230707308193}
   deadSprite: {fileID: 7838146471111990307}
   maxHealth: 10
+  audioSource: {fileID: 2190029921076324009}
+  playerDeathClip: {fileID: 8300000, guid: 36551110b627cd84c9cce2578ffedd06, type: 3}
+  volumePlayerDeath: 0.3
+  playerHurtClip: {fileID: 8300000, guid: 1c51ce704f1c39442831a6957228cf8e, type: 3}
+  volumePlayerHurt: 0.3
   currentHealth: 0
 --- !u!82 &2190029921076324009
 AudioSource:

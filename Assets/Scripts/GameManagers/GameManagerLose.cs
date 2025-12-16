@@ -8,6 +8,11 @@ public class GameManagerLose : MonoBehaviour
 
     private bool loseTriggered = false;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip losingSoundClip;
+    public float volumeLosingSound = 0.3f;
+
     void Update()
     {
         if (loseTriggered) return;
@@ -23,6 +28,13 @@ public class GameManagerLose : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         Debug.Log("Game Over — HAS MUERTO");
+
+        if (audioSource != null && losingSoundClip != null)
+        {
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.PlayOneShot(losingSoundClip, volumeLosingSound);
+        }
+
         if (finishMenu != null)
             finishMenu.Lose();
     }

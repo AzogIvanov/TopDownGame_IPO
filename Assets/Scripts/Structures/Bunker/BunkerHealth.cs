@@ -19,6 +19,8 @@ public class BunkerHealth : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip destroyExplosionClip;
     public float volumeExplosion = 0.3f;
+    public AudioClip hitMetalClip;
+    public float volumeHitMetal = 0.2f;
 
     private Rigidbody2D rb;
     private Collider2D col;
@@ -50,6 +52,12 @@ public class BunkerHealth : MonoBehaviour
 
         if (spriteRenderer != null)
             StartCoroutine(FlashRed());
+
+        if (audioSource != null && hitMetalClip != null)
+        {
+            audioSource.pitch = Random.Range(0.70f, 1.05f);
+            audioSource.PlayOneShot(hitMetalClip, volumeHitMetal);
+        }
 
         if (health <= 0)
         {

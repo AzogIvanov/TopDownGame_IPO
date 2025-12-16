@@ -14,6 +14,13 @@ public class PlayerHealth : MonoBehaviour
 
     public int maxHealth = 10;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip playerDeathClip;
+    public float volumePlayerDeath = 0.3f;
+    public AudioClip playerHurtClip;
+    public float volumePlayerHurt = 0.3f;
+
     [HideInInspector]
     public int currentHealth;
 
@@ -48,6 +55,12 @@ public class PlayerHealth : MonoBehaviour
         if (spriteRenderer != null)
             StartCoroutine(FlashRed());
 
+        if (audioSource != null && playerHurtClip != null)
+        {
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.PlayOneShot(playerHurtClip, volumePlayerHurt);
+        }
+
         Debug.Log("Player Hit! Health: " + currentHealth);
 
         if (currentHealth <= 0)
@@ -59,26 +72,30 @@ public class PlayerHealth : MonoBehaviour
     private IEnumerator FlashRed()
     {
         spriteRenderer.color = Color.red;
-        yield return new WaitForSeconds(0.1f); // dura 0.1 segundos, muy rápido
+        yield return new WaitForSeconds(0.1f);
         spriteRenderer.color = originalColor;
     }
 
     private void Die()
     {
         Debug.Log("Player Dead");
-        // Cambiar sprites
         if (aliveSprite != null)
             aliveSprite.SetActive(false);
 
         if (deadSprite != null)
             deadSprite.SetActive(true);
 
-        // Desactivar Rigidbody y Collider
         if (rb != null)
-            rb.simulated = false; // Rigidbody2D sigue existiendo pero no afecta físicas
+            rb.simulated = false;
 
         if (col != null)
             col.enabled = false;
+
+        if (audioSource != null && playerDeathClip != null)
+        {
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.PlayOneShot(playerDeathClip, volumePlayerDeath);
+        }
 
         // --- Disable logic ---
         if (TryGetComponent(out PlayerShooting ps)) ps.enabled = false;

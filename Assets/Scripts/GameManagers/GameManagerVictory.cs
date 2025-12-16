@@ -8,6 +8,11 @@ public class GameManagerVictory : MonoBehaviour
 
     private bool victoryTriggered = false;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip winningSoundClip;
+    public float volumeWinningSound = 0.3f;
+
     void Update()
     {
         if (victoryTriggered) return;
@@ -80,6 +85,13 @@ public class GameManagerVictory : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         Debug.Log("Victoria — ZONA DESPEJADA");
+
+        if (audioSource != null && winningSoundClip != null)
+        {
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.PlayOneShot(winningSoundClip, volumeWinningSound);
+        }
+
         if (finishMenu != null)
             finishMenu.Win();
     }

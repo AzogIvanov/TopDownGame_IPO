@@ -135,6 +135,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
   lifeTime: 2
   damage: 1
+  audioSource: {fileID: 0}
+  hitMetalClip: {fileID: 8300000, guid: ac9f7e1ead49a494da687fb179333453, type: 3}
+  volumeHitMetal: 0.2
 --- !u!61 &-505825034510644835
 BoxCollider2D:
   m_ObjectHideFlags: 0

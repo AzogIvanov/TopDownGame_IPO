@@ -133,7 +133,9 @@ MonoBehaviour:
   explosionFX: {fileID: 9110845643473381851}
   audioSource: {fileID: 6917570867070435778}
   destroyExplosionClip: {fileID: 8300000, guid: 0fe494e5c9303f3499cea2a828fcf832, type: 3}
-  volumeExplosion: 0.3
+  volumeExplosion: 0.18
+  hitMetalClip: {fileID: 8300000, guid: ac9f7e1ead49a494da687fb179333453, type: 3}
+  volumeHitMetal: 0.6
 --- !u!82 &6917570867070435778
 AudioSource:
   m_ObjectHideFlags: 0

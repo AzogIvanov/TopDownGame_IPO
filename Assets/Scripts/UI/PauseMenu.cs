@@ -38,6 +38,13 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
+
+        AudioSource[] allAudio = GameObject.FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
+
+        foreach (AudioSource a in allAudio)
+        {
+            a.UnPause();
+        }
     }
 
     public void Pause()
@@ -45,6 +52,15 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+
+        AudioSource[] allAudio = GameObject.FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
+
+        foreach (AudioSource a in allAudio)
+        {
+            a.Pause();
+        }
+
+
     }
 
     public void RestartLevel()
