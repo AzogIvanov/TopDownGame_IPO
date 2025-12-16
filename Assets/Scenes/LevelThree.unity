@@ -274314,6 +274314,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManagerLose
       objectReference: {fileID: 0}
+    - target: {fileID: 6183327778582178159, guid: 13130c52b49c10f45964d4e95bd7a739, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
